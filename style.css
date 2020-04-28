@@ -5,8 +5,18 @@ body {
 /* Hide all views to start off with, then dynamically show using JS */
 div.view {
     display: none;
+    margin-top: 2rem;
 }
 
 div.view.active {
     display: block;
+}
+
+div.row {
+    display: flex;
+    align-items: center;
+}
+
+#search-button, #camera-button {
+    margin-left: 1rem;
 }

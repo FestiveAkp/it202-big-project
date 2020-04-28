@@ -8,9 +8,11 @@
         <link href="https://unpkg.com/material-components-web@v4.0.0/dist/material-components-web.min.css" rel="stylesheet">
         <script src="https://unpkg.com/material-components-web@v4.0.0/dist/material-components-web.min.js"></script>
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" >
         <!-- Custom CSS and JS -->
         <link rel="stylesheet" href="style.css">
         <script defer src="app.js"></script>
+        <script defer src="camera.js"></script>
     </head>
     <body>
         <header class=" mdc-top-app-bar">
@@ -30,12 +32,12 @@
         <aside class="mdc-drawer mdc-drawer--modal">
             <div class="mdc-drawer__content">
               <nav class="mdc-list">
-                <a class="mdc-list-item mdc-list-item--activated" href="#search" aria-current="page">
-                  <i class="material-icons mdc-list-item__graphic" aria-hidden="true">inbox</i>
+                <a class="mdc-list-item mdc-list-item--activated">
+                  <i class="material-icons mdc-list-item__graphic">inbox</i>
                   <span class="mdc-list-item__text">Search</span>
                 </a>
-                <a class="mdc-list-item" href="#history">
-                  <i class="material-icons mdc-list-item__graphic" aria-hidden="true">send</i>
+                <a class="mdc-list-item">
+                  <i class="material-icons mdc-list-item__graphic">send</i>
                   <span class="mdc-list-item__text">History</span>
                 </a>
               </nav>
@@ -44,10 +46,53 @@
           <div class="mdc-drawer-scrim"></div>
 
           <main class="mdc-top-app-bar--fixed-adjust">
-              <div class="view" id="search">Screen 1</div>
-              <div class="view" id="result">Screen 2</div>
-              <div class="view" id="camera">Screen 3</div>
-              <div class="view" id="history">Screen 4</div>
-          </main>
+            <div class="view" id="search">
+                <div class="row">
+                    <div class="mdc-text-field mdc-text-field--outlined">
+                        <input id="search-input" class="mdc-text-field__input">
+                        <div class="mdc-notched-outline">
+                            <div class="mdc-notched-outline__leading"></div>
+                            <div class="mdc-notched-outline__notch">
+                                <label for="text-field-hero-input" class="mdc-floating-label">Search for a word</label>
+                            </div>
+                            <div class="mdc-notched-outline__trailing"></div>
+                        </div>
+                    </div>
+                    <button id="search-button" class="mdc-button mdc-button--raised">
+                        <div class="mdc-button__raised"></div>
+                        <span class="mdc-button__label">Search</span>
+                    </button>
+                    <button id="camera-button" class="mdc-button mdc-button--raised">
+                        <div class="mdc-button__raised"></div>
+                        <span class="mdc-button__label">Take a Picture</span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="view" id="result">
+                <div class="row">
+                    <button id="back-button" class="mdc-icon-button material-icons">arrow_back</button>
+                    <h1 class="mdc-typography--headline5">Results Here</h1>
+                </div>
+            </div>
+
+            <div class="view" id="camera">
+                <div class="row">
+                    <button id="back-button" class="mdc-icon-button material-icons">arrow_back</button>
+                    <h1 class="mdc-typography--headline5">Camera here</h1>
+                </div>
+
+                <video id="player" width="320" height="240" autoplay></video>
+                <canvas id="canvas" width="320" height="240"></canvas>
+                <button id="camera-capture">Capture</button>
+            </div>
+
+            <div class="view" id="history">
+                <div class="row">
+                    <button id="back-button" class="mdc-icon-button material-icons">arrow_back</button>
+                    <h1 class="mdc-typography--headline5">History here</h1>
+                </div>
+            </div>
+        </main>
     </body>
 </html>
