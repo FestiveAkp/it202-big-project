@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>IT 202 - Big Project</title>
+        <!-- Material Components for the Web -->
+        <link href="https://unpkg.com/material-components-web@v4.0.0/dist/material-components-web.min.css" rel="stylesheet">
+        <script src="https://unpkg.com/material-components-web@v4.0.0/dist/material-components-web.min.js"></script>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+        <!-- Custom CSS and JS -->
+        <link rel="stylesheet" href="style.css">
+        <script defer src="app.js"></script>
+    </head>
+    <body>
+        <header class=" mdc-top-app-bar">
+            <div class="mdc-top-app-bar__row">
+                <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start">
+                    <button class="mdc-icon-button material-icons mdc-top-app-bar__navigation-icon--unbounded">menu</button>
+                    <span class="mdc-top-app-bar__title">Dictionary</span>
+                </section>
+                <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-end">
+                    <button class="mdc-icon-button material-icons mdc-top-app-bar__action-item--unbounded" aria-label="Download">file_download</button>
+                    <button class="mdc-icon-button material-icons mdc-top-app-bar__action-item--unbounded" aria-label="Print this page">print</button>
+                    <button class="mdc-icon-button material-icons mdc-top-app-bar__action-item--unbounded" aria-label="Bookmark this page">bookmark</button>
+                </section>
+            </div>
+        </header>
+
+        <aside class="mdc-drawer mdc-drawer--modal">
+            <div class="mdc-drawer__content">
+              <nav class="mdc-list">
+                <a class="mdc-list-item mdc-list-item--activated" href="#search" aria-current="page">
+                  <i class="material-icons mdc-list-item__graphic" aria-hidden="true">inbox</i>
+                  <span class="mdc-list-item__text">Search</span>
+                </a>
+                <a class="mdc-list-item" href="#history">
+                  <i class="material-icons mdc-list-item__graphic" aria-hidden="true">send</i>
+                  <span class="mdc-list-item__text">History</span>
+                </a>
+              </nav>
+            </div>
+          </aside>
+          <div class="mdc-drawer-scrim"></div>
+
+          <main class="mdc-top-app-bar--fixed-adjust">
+              <div class="view" id="search">Screen 1</div>
+              <div class="view" id="result">Screen 2</div>
+              <div class="view" id="camera">Screen 3</div>
+              <div class="view" id="history">Screen 4</div>
+          </main>
+    </body>
+</html>

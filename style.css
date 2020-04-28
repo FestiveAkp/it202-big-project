@@ -1,0 +1,12 @@
+body {
+    margin: 0;
+}
+
+/* Hide all views to start off with, then dynamically show using JS */
+div.view {
+    display: none;
+}
+
+div.view.active {
+    display: block;
+}
