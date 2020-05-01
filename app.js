@@ -39,13 +39,6 @@ const searchBtn = document.querySelector('#search-button');
 const searchBar = document.querySelector('.mdc-text-field')
 new mdc.textField.MDCTextField(searchBar);
 
-searchBtn.addEventListener('click', () => {
-    const searchValue = document.querySelector('#search-input').value;
-
-    if (searchValue !== '') {
-        routeTo('result');
-    }
-});
 
 // If user presses enter on search bar, click the search button
 searchBar.addEventListener('keyup', e => {
@@ -60,6 +53,7 @@ document.querySelectorAll('#back-button').forEach(button => {
     button.addEventListener('click', () => {
         routeTo('search');
         document.querySelector('#search-input').value = '';
+        document.querySelector('#search-input').focus();
     });
 });
 
@@ -69,3 +63,15 @@ const cameraBtn = document.querySelector('#camera-button');
 cameraBtn.addEventListener('click', () => {
     routeTo('camera');
 });
+
+
+// Function which returns a simple loading indicator
+function createLoadingIcon() {
+    const loading = document.createElement('span');
+    loading.textContent = 'loading...';
+    loading.style.position = 'absolute';
+    loading.style.top = 64;
+    loading.style.left = 0;
+    loading.style.zIndex = 4;
+    return loading;
+}

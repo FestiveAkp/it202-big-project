@@ -3,18 +3,24 @@ body {
 }
 
 /* Hide all views to start off with, then dynamically show using JS */
-div.view {
+.view {
     display: none;
     margin-top: 2rem;
 }
 
-div.view.active {
-    display: block;
+.view.active {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .row {
     display: flex;
     align-items: center;
+}
+
+#back-button {
+    margin-right: 0.5rem;
 }
 
 #search-button, #camera-button {
@@ -43,10 +49,4 @@ li.definition {
 
 li.example {
     margin-top: 0.5rem;
-}
-
-.view#result.active {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
 }

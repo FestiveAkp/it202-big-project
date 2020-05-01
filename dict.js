@@ -15,6 +15,15 @@ async function queryDictionary(word) {
 }
 
 
+function clearUI() {
+    console.log('clearing ui');
+    document.querySelector('#word-title').textContent = '';
+    document.querySelector('#pronunciation').textContent = '';
+    document.querySelector('#syllables').textContent = '';
+    document.querySelectorAll('.definition').forEach(d => d.remove());
+}
+
+
 function updateUI(result) {
     document.querySelector('#word-title').textContent = result.word;
     
@@ -60,10 +69,20 @@ function updateUI(result) {
 }
 
 
-// When the search button is clicked, query the API for that search term
+// When the search button is clicked, query the API and build view
 document.querySelector('#search-button').addEventListener('click', () => {
     const searchValue = document.querySelector('#search-input').value;
-    
-    queryDictionary(searchValue)
-        .then(result => updateUI(result));
+
+    if (searchValue !== '') {
+        const loading = createLoadingIcon();
+        document.querySelector('main').prepend(loading);
+
+        queryDictionary(searchValue)
+            .then(result => {
+                loading.remove();
+                clearUI();
+                updateUI(result);
+                routeTo('result');
+            });
+    }
 });
