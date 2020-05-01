@@ -12,11 +12,41 @@ div.view.active {
     display: block;
 }
 
-div.row {
+.row {
     display: flex;
     align-items: center;
 }
 
 #search-button, #camera-button {
     margin-left: 1rem;
+}
+
+#definition-header {
+    align-items: baseline;
+}
+
+#pronunciation {
+    margin-left: 1rem;
+}
+
+#syllables {
+    margin-left: 1rem;
+}
+
+.example {
+    font-style: italic;
+}
+
+li.definition {
+    margin-bottom: 2rem;
+}
+
+li.example {
+    margin-top: 0.5rem;
+}
+
+.view#result.active {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
