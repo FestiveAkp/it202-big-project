@@ -9,6 +9,8 @@
         <script src="https://unpkg.com/material-components-web@v4.0.0/dist/material-components-web.min.js"></script>
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" >
+        <!-- Dexie.js -->
+        <script src="https://unpkg.com/dexie@latest/dist/dexie.js"></script>
         <!-- Custom CSS and JS -->
         <link rel="stylesheet" href="style.css">
         <script defer src="app.js"></script>
@@ -99,8 +101,9 @@
             <div class="view" id="history">
                 <div class="row">
                     <button id="back-button" class="mdc-icon-button material-icons">arrow_back</button>
-                    <h1 class="mdc-typography--headline5">History here</h1>
+                    <h1 class="mdc-typography--headline5">Previously Searched Terms</h1>
                 </div>
+                <ul id="history-list" class="mdc-list"></ul>
             </div>
         </main>
     </body>

@@ -1,17 +1,27 @@
 // Logic for dictionary functionality
 
 async function queryDictionary(word) {
-    const api = 'https://wordsapiv1.p.rapidapi.com/words/';
+    // See if the word has been searched before, we can just grab the result from IndexedDB then
+    const definitionInHistory = await db.searches.get(word);
 
-    let response = await fetch(api + word, {
-        "headers": {
-            "x-rapidapi-host": "wordsapiv1.p.rapidapi.com",
-            "x-rapidapi-key": "57368629e3msh7692a01be021d2ep14d981jsnc3f2f5d052c0"
-        }
-    });
-    let data = await response.json();
-    console.log(data);
-    return data;
+    if (definitionInHistory === undefined) {
+        // This is a unique search, go to the API
+        const api = 'https://wordsapiv1.p.rapidapi.com/words/';
+    
+        let response = await fetch(api + word, {
+            "headers": {
+                "x-rapidapi-host": "wordsapiv1.p.rapidapi.com",
+                "x-rapidapi-key": "57368629e3msh7692a01be021d2ep14d981jsnc3f2f5d052c0"
+            }
+        });
+        let data = await response.json();
+        console.log(data);
+        return data;
+    }
+    else {
+        // We've searched for this before
+        return definitionInHistory;
+    }
 }
 
 
@@ -69,6 +79,45 @@ function updateUI(result) {
 }
 
 
+// IndexedDB store for search history
+const db = new Dexie('dictionary_db');
+db.version(1).stores({
+    searches: 'word'
+});
+
+function updateStore(data) {
+    // Put a new entry in the table, then update the history view
+    db.searches.put(data)
+    .then(() => updateHistoryView());
+}
+
+function updateHistoryView() {
+    const list = document.querySelector('#history-list');
+
+    // Clear what's already on the screen
+    list.textContent = '';
+
+    // Add an entry for each entry in the table
+    db.searches.each(search => {
+        const historyText = document.createElement('span');
+        historyText.textContent = search.word;
+        historyText.classList.add('mdc-list-item__text');
+
+        const historyListing = document.createElement('li');
+        historyListing.classList.add('mdc-list-item');
+
+        historyListing.appendChild(historyText);
+        list.appendChild(historyListing);
+
+        // When the listing is clicked, search for the word
+        historyListing.addEventListener('click', () => {
+            document.querySelector('#search-input').value = search.word;
+            document.querySelector('#search-button').click();
+        })
+    });
+}
+
+
 // When the search button is clicked, query the API and build view
 document.querySelector('#search-button').addEventListener('click', () => {
     const searchValue = document.querySelector('#search-input').value;
@@ -82,7 +131,11 @@ document.querySelector('#search-button').addEventListener('click', () => {
                 loading.remove();
                 clearUI();
                 updateUI(result);
+                updateStore(result);
                 routeTo('result');
             });
     }
 });
+
+// Update the history view with entries that are already in the IndexedDB
+updateHistoryView();
