@@ -23,7 +23,7 @@ body {
     margin-right: 0.5rem;
 }
 
-#search-button, #camera-button {
+#search-button, #camera-button, #clear-history {
     margin-left: 1rem;
 }
 

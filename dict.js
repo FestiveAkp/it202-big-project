@@ -141,3 +141,8 @@ document.querySelector('#search-button').addEventListener('click', () => {
 
 // Update the history view with entries that are already in the IndexedDB
 updateHistoryView();
+
+document.querySelector('#clear-history').addEventListener('click', () => {
+    db.searches.clear();
+    updateHistoryView();
+});
