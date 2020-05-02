@@ -113,6 +113,8 @@ function updateHistoryView() {
         historyListing.addEventListener('click', () => {
             document.querySelector('#search-input').value = search.word;
             document.querySelector('#search-button').click();
+            document.querySelector('#search-input').value = '';
+            routeTo('search');
         })
     });
 }
@@ -132,7 +134,7 @@ document.querySelector('#search-button').addEventListener('click', () => {
                 clearUI();
                 updateUI(result);
                 updateStore(result);
-                routeTo('result');
+                // routeTo('result');
             });
     }
 });

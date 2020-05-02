@@ -58,13 +58,6 @@ document.querySelectorAll('#back-button').forEach(button => {
 });
 
 
-// Instantiate camera button and add navigation to camera view
-const cameraBtn = document.querySelector('#camera-button');
-cameraBtn.addEventListener('click', () => {
-    routeTo('camera');
-});
-
-
 // Function which returns a simple loading indicator
 function createLoadingIcon() {
     const loading = document.createElement('span');
