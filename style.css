@@ -50,3 +50,7 @@ li.definition {
 li.example {
     margin-top: 0.5rem;
 }
+
+#definition-section {
+    padding: 1.5rem;
+}
