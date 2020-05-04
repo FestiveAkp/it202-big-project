@@ -127,6 +127,7 @@ document.querySelector('#search-button').addEventListener('click', () => {
     if (searchValue !== '') {
         const loading = createLoadingIcon();
         document.querySelector('main').prepend(loading);
+        navigator.vibrate(200);
 
         queryDictionary(searchValue)
             .then(result => {
